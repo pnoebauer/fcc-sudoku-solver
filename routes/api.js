@@ -20,12 +20,15 @@ module.exports = function (app) {
 			return res.json({error: 'Invalid value'});
 		}
 
-		if (puzzle.length !== 81) {
-			return res.json({error: 'Expected puzzle to be 81 characters long'});
-		}
+		// if (puzzle.length !== 81) {
+		// 	return res.json({error: 'Expected puzzle to be 81 characters long'});
+		// }
 
-		if (!solver.validate(puzzle)) {
-			return res.json({error: 'Invalid characters in puzzle'});
+		// if (!solver.validate(puzzle)) {
+		// 	return res.json({error: 'Invalid characters in puzzle'});
+		// }
+		if (solver.validate(puzzle)) {
+			return res.json(solver.validate(puzzle));
 		}
 
 		const [rowLetter, column] = coordinate;
@@ -61,15 +64,19 @@ module.exports = function (app) {
 		// console.log(req.body);
 		const {puzzle} = req.body;
 
-		if (!puzzle) {
-			return res.json({error: 'Required field missing'});
-		}
+		// if (!puzzle) {
+		// 	return res.json({error: 'Required field missing'});
+		// }
 
-		if (!solver.validate(puzzle)) {
-			return res.json({error: 'Invalid characters in puzzle'});
-		}
-		if (puzzle.length !== 81) {
-			return res.json({error: 'Expected puzzle to be 81 characters long'});
+		// if (!solver.validate(puzzle)) {
+		// 	return res.json({error: 'Invalid characters in puzzle'});
+		// }
+		// if (puzzle.length !== 81) {
+		// 	return res.json({error: 'Expected puzzle to be 81 characters long'});
+		// }
+
+		if (solver.validate(puzzle)) {
+			return res.json(solver.validate(puzzle));
 		}
 
 		const solvedPuzzle = solver.solve(puzzle);

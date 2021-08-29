@@ -1,10 +1,24 @@
 class SudokuSolver {
 	validate(puzzleString) {
-		if (!!puzzleString.match(/[^0-9.]/)) {
-			console.log('invalid symbol');
+		// if (!!puzzleString.match(/[^0-9.]/)) {
+		// 	console.log('invalid symbol');
+		// }
+
+		// return !puzzleString.match(/[^0-9.]/);
+
+		if (!puzzleString) {
+			return {error: 'Required field missing'};
 		}
 
-		return !puzzleString.match(/[^0-9.]/);
+		if (puzzleString.match(/[^0-9.]/)) {
+			return {error: 'Invalid characters in puzzle'};
+		}
+
+		if (puzzleString.length !== 81) {
+			return {error: 'Expected puzzle to be 81 characters long'};
+		}
+
+		return;
 	}
 
 	getRowValues(puzzleString, row) {
@@ -78,10 +92,10 @@ class SudokuSolver {
 		*/
 		// rowValues.splice(column - 1, 1);
 		rowValues[column - 1] = '.';
-		// console.log({rowValues});
+		// console.log({rowValues, value});
 
 		const validRow = !rowValues.includes(value);
-		// console.log({validRow});
+		// console.log({validRow, value});
 
 		return validRow;
 	}
@@ -122,7 +136,7 @@ class SudokuSolver {
 
 		console.log(`initial: ${this.countOccurrences(solvedPuzzle, '.')} empty fields`);
 
-		for (let run = 0; run < 14; run++) {
+		for (let run = 0; run < 20; run++) {
 			let i = 0;
 			for (let row = 1; row <= 9; row++) {
 				// let rowValues = [];
