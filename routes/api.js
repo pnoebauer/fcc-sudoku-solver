@@ -34,7 +34,7 @@ module.exports = function (app) {
 		const [rowLetter, column] = coordinate;
 		const row = rowLetter.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
 
-		if (row < 1 || row > 9 || column < 1 || column > 9) {
+		if (coordinate.length > 2 || row < 1 || row > 9 || column < 1 || column > 9) {
 			return res.json({error: 'Invalid coordinate'});
 		}
 
