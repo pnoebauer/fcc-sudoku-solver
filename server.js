@@ -10,6 +10,10 @@ const runner = require('./test-runner');
 
 const app = express();
 
+// const SudokuSolver = require('./controllers/sudoku-solver.js');
+// const puzzlesAndSolutions =
+// 	require('./controllers/puzzle-strings.js').puzzlesAndSolutions;
+
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(cors({origin: '*'})); //For FCC testing purposes only
 
@@ -31,6 +35,12 @@ apiRoutes(app);
 app.use(function (req, res, next) {
 	res.status(404).type('text').send('Not Found');
 });
+
+// const solver = new SudokuSolver();
+// const [puzzle, solution] = puzzlesAndSolutions[4];
+// // console.log(puzzlesAndSolutions[0][0]);
+// const solvedPuzzle = solver.solve(puzzle);
+// console.log(solvedPuzzle === solution);
 
 //Start our server and tests!
 const PORT = process.env.PORT || 3000;
